@@ -5,8 +5,9 @@ An intelligent, multilingual AI Assistant built for **IT Community (ITC)** at Sa
 ---
 
 ## 🎯 Completed Modules & Features
+
 - **Module 03: AI Chatbot & RAG System**
-  - **Automated Ingestion Pipeline:** Admin sends Markdown knowledge-base files via Telegram $\rightarrow$ custom JS parser splits documents by headers & extracts metadata (`source`, `id`, `title`, `category`) $\rightarrow$ embeds with OpenAI $\rightarrow$ stores in Supabase Vector Store.
+  - **Automated Ingestion Pipeline:** Admin sends Markdown knowledge-base files via Telegram, custom JS parser splits documents by headers and extracts metadata (`source`, `id`, `title`, `category`), embeds with OpenAI, and stores them in Supabase Vector Store.
   - **Grounded RAG Retrieval:** Strictly answers using verified club documents (`workshops.md`, `events.md`, `departments.md`, `faq_and_rules.md`).
   - **Multilingual & Darija Support:** Automatically detects and responds in Arabic, Algerian Darija, French, or English.
   - **Persistent Conversation Memory:** Uses PostgreSQL Chat Memory to maintain context across user messages.
@@ -32,7 +33,8 @@ An intelligent, multilingual AI Assistant built for **IT Community (ITC)** at Sa
            (On Failure / Crash)
                      v
        [Error Handler Workflow] ---> [AI Diagnosis + Postgres Logs + Telegram Alert]
-📂 Repository StructurePlaintext├── workflows/
+📂 Repository StructurePlaintextITC-AI-Assistant/
+├── workflows/
 │   ├── ITC-Assistant.json                 # Main RAG Ingestion & AI Chat Agent workflow
 │   └── Error-Handler-ITC-Assistant.json   # Automated error monitoring & AI diagnosis workflow
 ├── knowledge-base/
@@ -42,9 +44,4 @@ An intelligent, multilingual AI Assistant built for **IT Community (ITC)** at Sa
 │   └── faq_and_rules.md                   # FAQs, code of conduct & assistant guardrails
 ├── .env.example                           # Environment variables template (no real secrets)
 └── README.md                              # Project documentation
-
-
----
-
-## 🚀 How to Run Locally (Setup Guide)
-(Setup Guide)Prerequisites:A self-hosted or cloud n8n instance.A Supabase project with pgvector enabled and a documents table.A PostgreSQL database for chat memory and error_logs.API keys for Google Gemini, OpenAI (for embeddings), and a Telegram Bot.Environment Setup:Copy .env.example to .env and fill in your credentials inside n8n Credentials manager.Import Workflows:Open your n8n dashboard $\rightarrow$ Workflows $\rightarrow$ Import from File.Import both JSON files from the workflows/ folder and link your credentials.Ingest Knowledge Base:Activate the workflow and send the .md files from knowledge-base/ to your Telegram bot to populate Supabase.Test the Assistant:Open the Chat Trigger URL in n8n and start asking questions about ITC!
+🚀 How to Run Locally (Setup Guide)Prerequisites:A self-hosted or cloud n8n instance.A Supabase project with pgvector enabled and a documents table.A PostgreSQL database for chat memory and error_logs.API keys for Google Gemini, OpenAI (for embeddings), and a Telegram Bot.Environment Setup:Copy .env.example to .env and fill in your credentials inside the n8n Credentials manager.Import Workflows:Open your n8n dashboard $\rightarrow$ Workflows $\rightarrow$ Import from File.Import both JSON files from the workflows/ folder and link your credentials.Ingest Knowledge Base:Activate the workflow and send the .md files from knowledge-base/ to your Telegram bot to populate Supabase.Test the Assistant:Open the Chat Trigger URL in n8n and start asking questions about ITC!
