@@ -18,37 +18,41 @@ An intelligent, multilingual AI Assistant built for **IT Community (ITC)** at Sa
 
 ## 🏗️ System Architecture
 
-[Admin via Telegram] ---> (Markdown Files) ---> [n8n Ingestion Pipeline]
-                                                        |
-                                            (JS Chunking + OpenAI Embeddings)
-                                                        v
-[User via Chat Widget] ---> [n8n AI Agent] <---> [Supabase Vector Store]
-                            |
-             +--------------+--------------+
-             |                             |
-             v                             v
-    [Google Gemini LLM]         [Postgres Chat Memory]
-             |
-   (On Failure / Crash)
-             v
-[Error Handler Workflow] ---> [AI Diagnosis + Postgres Logs + Telegram Alert]
+```mermaid
+flowchart TD
+    subgraph ING["📥 Ingestion Pipeline"]
+        A["👤 Admin (Telegram)"] -->|Markdown files| B["⚙️ n8n Ingestion Workflow"]
+        B -->|"JS chunking + OpenAI embeddings"| C[("🗄️ Supabase Vector Store")]
+    end
 
----
+    subgraph CHAT["💬 Chat Flow"]
+        U["🧑 User (Chat Widget)"] --> D["🤖 n8n AI Agent"]
+        D <-->|retrieval| C
+        D <--> E["✨ Google Gemini LLM"]
+        D <--> F[("🧠 Postgres Chat Memory")]
+    end
+
+    D -.->|"on failure / crash"| G["🚨 Error Handler Workflow"]
+    B -.->|"on failure"| G
+    G --> H["🔍 AI Diagnosis (Gemini)"]
+    H --> I[("📝 Postgres error_logs")]
+    H --> J["📲 Telegram Alert"]
+```
 
 ## 📂 Repository Structure
 
+```text
 ITC-AI-Assistant/
 ├── workflows/
-│   ├── ITC-Assistant.json                 # Main RAG Ingestion & AI Chat Agent workflow
-│   └── Error-Handler-ITC-Assistant.json   # Automated error monitoring & AI diagnosis workflow
+│   ├── ITC-Assistant.json                # Main RAG ingestion & AI chat agent workflow
+│   └── Error-Handler-ITC-Assistant.json  # Automated error monitoring & AI diagnosis
 ├── knowledge-base/
-│   ├── workshops.md                       # Club technical workshops catalog
-│   ├── events.md                          # Hackathons, competitions & gatherings
-│   ├── departments.md                     # ITC departments structure & joining tasks
-│   └── faq_and_rules.md                   # FAQs, code of conduct & assistant guardrails
-├── .env.example                           # Environment variables template (no real secrets)
-└── README.md                              # Project documentation
-
+│   ├── workshops.md                      # Club technical workshops catalog
+│   ├── events.md                         # Hackathons, competitions & gatherings
+│   ├── departments.md                    # ITC departments structure & joining tasks
+│   └── faq_and_rules.md                  # FAQs, code of conduct & assistant guardrails
+├── .env.example                          # Environment variables template (no real secrets)
+└── README.md                             # Project documentation
 ---
 
 ## 🚀 How to Run Locally (Setup Guide)
