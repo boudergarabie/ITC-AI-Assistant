@@ -43,8 +43,8 @@ An intelligent, multilingual AI Assistant built for **IT Community (ITC)** at Sa
 ├── .env.example                           # Environment variables template (no real secrets)
 └── README.md                              # Project documentation
 
+
 ---
 
 ## 🚀 How to Run Locally (Setup Guide)
-
 (Setup Guide)Prerequisites:A self-hosted or cloud n8n instance.A Supabase project with pgvector enabled and a documents table.A PostgreSQL database for chat memory and error_logs.API keys for Google Gemini, OpenAI (for embeddings), and a Telegram Bot.Environment Setup:Copy .env.example to .env and fill in your credentials inside n8n Credentials manager.Import Workflows:Open your n8n dashboard $\rightarrow$ Workflows $\rightarrow$ Import from File.Import both JSON files from the workflows/ folder and link your credentials.Ingest Knowledge Base:Activate the workflow and send the .md files from knowledge-base/ to your Telegram bot to populate Supabase.Test the Assistant:Open the Chat Trigger URL in n8n and start asking questions about ITC!
