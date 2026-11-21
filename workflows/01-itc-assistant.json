@@ -323,7 +323,7 @@
             {
               "id": "1e6ab51d-26ee-4723-96e1-ae4e6dd8a5da",
               "leftValue": "={{ $json.message.from.id }}",
-              "rightValue": 6741109871,
+              "rightValue": YOUR_TELEGRAM_ID,
               "operator": {
                 "type": "number",
                 "operation": "equals"
