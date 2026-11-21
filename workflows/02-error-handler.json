@@ -27,7 +27,7 @@
     },
     {
       "parameters": {
-        "chatId": "6741109871",
+        "chatId": "YOUR_TELEGRAM_ID",
         "text": "=🚨 <b>تنبيه خطأ أوتوماتيكي — NODAL AI</b>\n\n📌 <b>الوركفلو:</b> {{ $('Parse Error Payload').item.json.workflowName }}\n⚠️ <b>النود المعطلة:</b> {{ $('Parse Error Payload').item.json.failedNodeName }}\n🕒 <b>الوقت:</b> {{ $('Parse Error Payload').item.json.occurredAt }}\n\n❌ <b>رسالة الخطأ:</b>\n<code>{{ $('Parse Error Payload').item.json.errorMessage }}</code>\n\n💡 <b>تحليل الذكاء الاصطناعي واقتراح الحل:</b>\n{{ $('AI Error Diagnosis').item.json.text }}\n\n🔗 <b>رابط التنفيذ المباشر:</b>\n{{ $('Parse Error Payload').item.json.executionUrl }}",
         "additionalFields": {
           "appendAttribution": false,
